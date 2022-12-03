@@ -47,6 +47,6 @@ int main()
     }
     for (int i = 0; i < n + m; i++)
     {
-        cout << arr1[i] << " ";
+        cout << arr1[i] << "  ";
     }
 }
