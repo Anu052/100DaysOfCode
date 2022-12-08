@@ -18,8 +18,8 @@ int main()
         string s;
         cin>>s;
         if(func(s)==true)
-            cout<<"pailndrome"<<endl;
+            cout<<"palindrome"<<endl;
         else
-            cout<<"not pailndrome"<<endl;
+            cout<<"not palindrome"<<endl;
     }
 }

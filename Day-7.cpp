@@ -15,7 +15,7 @@ void reverseStr(string& str)
 int main()
 {
     string  ans;
-    string str = "geeksforgeeks";
+    string str = "anurag";
     reverseStr(str);
     cout << str;
     return 0;

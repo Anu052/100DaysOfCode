@@ -32,7 +32,7 @@ int main()
         cout<<"enter the second string input"<<endl;
         cin>>s2;
         if(rotation(s1,s2)==true)
-            cout<<"Yes strings are rotation of each other"<<endl;
+            cout<<"Yes strings are rotation of each other "<<endl;
         else
             cout<<"No strings are rotation of each other"<<endl;
     
