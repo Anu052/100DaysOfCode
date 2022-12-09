@@ -10,7 +10,7 @@ public:
         {
             if (st.empty())
                 st.push(s[i]);
-            else if (st.top() == '(' && s[i] == ')' || st.top() == '[' && s[i] == ']' || st.top() == '{' && s[i] == '}')
+            else if (st.top() == '('  &&  s[i] == ')' || st.top() == '[' && s[i] == ']' || st.top() == '{' && s[i] == '}')
                 st.pop();
             else
                 st.push(s[i]);
