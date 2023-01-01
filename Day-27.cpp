@@ -21,49 +21,49 @@ void create(int a[], int n)
         last = t;
     }
 }
-void insert1(struct node *p,int index,int x)
+void insert1(struct node *p, int index, int x)
 {
     struct node *t;
     int i;
-    if(index==0)
+    if (index == 0)
     {
-        t=new node;
-        t->data=x;
-        if(first==NULL)
+        t = new node;
+        t->data = x;
+        if (first == NULL)
         {
-            first=t;
-            first->next=first;
+            first = t;
+            first->next = first;
         }
         else
         {
-            while(p->next!=first)
+            while (p->next != first)
             {
-                p=p->next;
+                p = p->next;
             }
-                p->next=t;
-                t->next=first;
-                first=t;
+            p->next = t;
+            t->next = first;
+            first = t;
         }
-
     }
     else
     {
-      for(int i=0;i<index-1;i++)
-      {
-          p=p->next;
-      }
-          t=new node;
-          t->data=x;
-          t->next=p->next;
-          p->next=t;
+        for (int i = 0; i < index - 1; i++)
+        {
+            p = p->next;
+        }
+        t = new node;
+        t->data = x;
+        t->next = p->next;
+        p->next = t;
     }
 }
 void display(struct node *p)
 {
-    do{
-        cout<<p->data<<endl;
-        p=p->next;
-    }while(p!=first);
+    do
+    {
+        cout << p->data << endl;
+        p = p->next;
+    } while (p != first);
 }
 int main()
 {
@@ -81,15 +81,15 @@ int main()
         {
             cin >> a[i];
         }
-        int index,x;
-        cout<<"enter the index value"<<endl;
-        cin>>index;
-        cout<<"enter the value"<<endl;
-        cin>>x;
+        int index, x;
+        cout << "enter the index value" << endl;
+        cin >> index;
+        cout << "enter the value" << endl;
+        cin >> x;
         create(a, n);
         display(first);
-        cout<<endl;
-        insert1(first,index,x);
+        cout << endl;
+        insert1(first, index, x);
         display(first);
     }
 }

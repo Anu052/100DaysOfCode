@@ -1,73 +1,73 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 struct node
 {
-   int data;
-   struct node *next; 
-}*first=NULL;
-void create(int a[],int n)
+    int data;
+    struct node *next;
+} *first = NULL;
+void create(int a[], int n)
 {
-    struct node *t,*last;
-    first=new node;
-    first->data=a[0];
-    first->next=NULL;
-    last=first;
-    for(int i=1;i<n;i++)
+    struct node *t, *last;
+    first = new node;
+    first->data = a[0];
+    first->next = NULL;
+    last = first;
+    for (int i = 1; i < n; i++)
     {
-        t=new node;
-        t->data=a[i];
-        t->next=NULL;
-        last->next=t;
-        last=t;
+        t = new node;
+        t->data = a[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
     }
 }
-void func(struct node* &head)
+void func(struct node *&head)
 {
-    node* p=first;
-    node* q=first->next;
-    while(q!=NULL)
+    node *p = first;
+    node *q = first->next;
+    while (q != NULL)
     {
-        if(p->data!=q->data)
+        if (p->data != q->data)
         {
-            p=q;
-            q=q->next;
+            p = q;
+            q = q->next;
         }
         else
         {
-            p->next=q->next;
+            p->next = q->next;
             delete q;
-            q=p->next;
+            q = p->next;
         }
     }
 }
 void display(struct node *p)
 {
-    while(p!=NULL)
+    while (p != NULL)
     {
-        cout<<p->data<<endl;
-        p=p->next;
+        cout << p->data << endl;
+        p = p->next;
     }
 }
 int main()
 {
     int t;
-    cout<<"enter the test case value"<<endl;
-    cin>>t;
-    while(t--)
+    cout << "enter the test case value" << endl;
+    cin >> t;
+    while (t--)
     {
         int n;
-        cout<<"enter the size of array"<<endl;
-        cin>>n;
+        cout << "enter the size of array" << endl;
+        cin >> n;
         int a[n];
-        cout<<"enter the array element"<<endl;
-        for(int i=0;i<n;i++)
+        cout << "enter the array element" << endl;
+        for (int i = 0; i < n; i++)
         {
-            cin>>a[i];
+            cin >> a[i];
         }
-        create(a,n);
+        create(a, n);
         display(first);
         func(first);
-        cout<<"after running func function"<<endl;
+        cout << "after running func function" << endl;
         display(first);
     }
 }
