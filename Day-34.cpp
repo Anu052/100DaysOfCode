@@ -9,7 +9,6 @@ void printArray(int arr[], int size)
 }
 void quickSort(int arr[], int low, int high)
 {
-    // code here
     if (low < high)
     {
         int pi = partition(arr, low, high);
