@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#include <bits/stdc++.h>
-using namespace std;
 struct Node
 {
     int data;
@@ -25,19 +23,19 @@ void create(int a[], int n)
         last = t;
     }
 }
-void postOrder(Node *root, vector<int> &arr)
+void preOrder(Node *root, vector<int> &arr)
 {
     if (root)
     {
-        postOrder(root->left, arr);
-        postOrder(root->right, arr);
         arr.push_back(root->data);
+        preOrder(root->left, arr);
+        preOrder(root->right, arr);
     }
 }
-vector<int> postOrder(Node *root)
+vector<int> preOrder(Node *root)
 {
     // Your code here
     vector<int> ans;
-    postOrder(root, ans);
+    preOrder(root, ans);
     return ans;
 }
