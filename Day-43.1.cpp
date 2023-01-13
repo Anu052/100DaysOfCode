@@ -3,9 +3,9 @@ using namespace std;
 struct node
 {
     int data;
-    struct node *next;
     struct node *left;
     struct node *right;
+    struct node *next;
 } *first = NULL;
 void create(int a[], int n)
 {
@@ -23,14 +23,28 @@ void create(int a[], int n)
         last = t;
     }
 }
-int maxheight(struct node *root)
+vector<int> righttree(struct node *root)
 {
-    int x, y;
+    queue<node *> q;
+    vector<int> ans;
+    q.push(root);
     if (!root)
-        return NULL;
-    x = maxheight(root->left);
-    y = maxheight(root->right);
-    return max(x, y) + 1;
+        return ans;
+    while (!q.empty())
+    {
+        int sz = q.size();
+        ans.push_back(q.front()->data);
+        while (sz--)
+        {
+            node *t = q.front();
+            q.pop();
+            if (t->right)
+                q.push(t->right);
+            if (t->left)
+                q.push(t->left);
+        }
+    }
+    return ans;
 }
 void display(struct node *p)
 {
