@@ -10,41 +10,28 @@ struct node
 void create(int a[], int n)
 {
     struct node *t, *last;
-    first = new node;
     first->data = a[0];
     first->next = NULL;
     last = first;
-    for (int i = 1; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         t = new node;
         t->data = a[i];
         t->next = NULL;
-        last->next = t->next;
+        last->next = t;
         last = t;
     }
 }
-vector<int> leftview(struct node *root)
+int ma = 0;
+int longest_subtree(struct node *root)
 {
-    queue<node *> q;
-    vector<int> ans;
-    q.push(root);
     if (!root)
-        return ans;
-    while (!q.empty())
-    {
-        int sz = q.size();
-        ans.push_back(q.front()->data);
-        while (sz--)
-        {
-            node *t = q.front();
-            q.pop();
-            if (t->left)
-                q.push(t->left);
-            if (t->right)
-                q.push(t->right);
-        }
-    }
-    return ans;
+        return 0;
+    int x, y;
+    x = longest_subtree(root->left);
+    y = longest_subtree(root->right);
+    ma = max(ma, x + y + root->data);
+    return x + y + root->data;
 }
 void display(struct node *p)
 {
@@ -65,7 +52,7 @@ int main()
         cout << "enter the size of array" << endl;
         cin >> n;
         int a[n];
-        cout << "enter the array element" << endl;
+        cout << 'enter the array element' << endl;
         for (int i = 0; i < n; i++)
         {
             cin >> a[i];
