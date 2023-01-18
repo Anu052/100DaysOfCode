@@ -23,32 +23,38 @@ void create(int a[], int n)
         last = t;
     }
 }
-vector<int> bottomview(struct node *root)
+
+vector<int> zigzag(struct node *root)
 {
     vector<int> ans;
-    map<int, int> mp;
-    queue<pair<node *, int>> q;
-    if (!root)
-    {
-        return ans;
-    }
-    q.push({root, 0});
+    queue<node *> q;
+    q.push(root);
+    int f = 1;
     while (!q.empty())
     {
-        node *t = q.front().first;
-        int h = q.front().second;
-        q.pop();
-        mp[h] = t->data;
-        if (t->left)
-            q.push({t->left, h - 1});
-        if (t->right)
-            q.push({t->right, h + 1});
-        for (auto it : mp)
+        vector<int> temp;
+        int sz = q.size();
+        while (sz--)
         {
-            ans.push_back(it.second);
+            node *t = q.front();
+            temp.push_back(t->data);
+            q.pop();
+            if (t->left)
+                q.push(t->left);
+            if (t->right)
+                q.push(t->right);
         }
-        return ans;
+        if (f % 2 == 0)
+        {
+            reverse(temp.begin(), temp.end());
+        }
+        for (int i = 0; i < temp.size(); i++)
+        {
+            ans.push_back(temp[i]);
+        }
+        f = !f;
     }
+    return ans;
 }
 void display(struct node *p)
 {
@@ -67,6 +73,7 @@ int main()
     {
         int n;
         cout << "enter the size of array" << endl;
+        cin >> n;
         int a[n];
         cout << "enter the array element" << endl;
         for (int i = 0; i < n; i++)
