@@ -4,6 +4,7 @@ struct node
 {
     int data;
     struct node *left;
+    struct node *first;
     struct node *right;
     struct node *next;
 } *first = NULL;
@@ -23,20 +24,26 @@ void create(int a[], int n)
         last = t;
     }
 }
-bool issametree(struct node *p, struct node *q)
+
+void solve(struct node *root, struct node *pre)
 {
-    if (p == NULL or q == NULL)
+    if (!root)
+        return;
+    solve(root->left, pre);
+    if (pre != NULL)
     {
-        return (p == q);
+        pre->next = root;
     }
-    return (p->data == q->data) && issametree(p->left, q->left) && issametree(p->right, q->right);
+    pre = root;
+    solve(root->right, pre);
 }
-void display(struct node *p)
+
+void display(struct node *root)
 {
-    while (p != NULL)
+    while (!root)
     {
-        cout << p->data << endl;
-        p = p->next;
+        cout << root->data << endl;
+        root = root->next;
     }
 }
 int main()
