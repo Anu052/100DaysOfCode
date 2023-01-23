@@ -14,7 +14,7 @@ void create(int a[], int n)
     first->data = a[0];
     first->next = NULL;
     last = first;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n; i++)
     {
         t = new node;
         t->data = a[i];
@@ -28,7 +28,7 @@ void so(struct node *root, int k, int &idx)
 {
     if (!root)
         return;
-    so(root->left, k, idx);
+    so(root->right, k, idx);
     if (idx == k)
     {
         ans = root->data;
@@ -37,7 +37,7 @@ void so(struct node *root, int k, int &idx)
     }
     else
         idx++;
-    so(root->right, k, idx);
+    so(root->left, k, idx);
 }
 int kthsmallest(struct node *root, int k1)
 {
@@ -48,18 +48,18 @@ int kthsmallest(struct node *root, int k1)
     so(root, k1, idx);
     return ans;
 }
-void display(struct node *p)
+void display(struct node *root)
 {
-    while (p != NULL)
+    while (root != NULL)
     {
-        cout << p->data << endl;
-        p = p->next;
+        cout << root->data << endl;
+        root = root->next;
     }
 }
 int main()
 {
     int t;
-    cout << "enter the test case value" << endl;
+    cout << "enter the size of array" << endl;
     cin >> t;
     while (t--)
     {
@@ -67,7 +67,6 @@ int main()
         cout << "enter the size of array" << endl;
         cin >> n;
         int a[n];
-        cout << "enter the array element" << endl;
         for (int i = 0; i < n; i++)
         {
             cin >> a[i];
