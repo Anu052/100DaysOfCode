@@ -3,9 +3,10 @@ using namespace std;
 struct node
 {
     int data;
+    struct node *next;
     struct node *left;
     struct node *right;
-    struct node *next;
+    struct node *last;
 } *first = NULL;
 void create(int a[], int n)
 {
@@ -23,29 +24,24 @@ void create(int a[], int n)
         last = t;
     }
 }
-int getcount(struct node *root, int l, int h)
+bool solve(struct node *root, int min, int max)
 {
     if (!root)
-        return 0;
-    if (root->data >= l && root->data <= h)
-    {
-        return 1 + getcount(root->left, l, h) + getcount(root->right, l, h);
-    }
-    else if (root->data < l)
-    {
-        return getcount(root->right, l, h);
-    }
-    else
-    {
-        return getcount(root->left, l, h);
-    }
+        return false;
+    if (min == max)
+        return true;
+    return solve(root->left, min, root->data - 1) or (root->right, root->data, max);
 }
-void display(struct node *root)
+bool isdead(struct node *root)
 {
-    while (root != NULL)
+    return solve(root, 1, INT_MAX);
+}
+void display(struct node *p)
+{
+    while (!p)
     {
-        cout << root->data << endl;
-        root = root->next;
+        cout << p->data << endl;
+        p = p->next;
     }
 }
 int main()
