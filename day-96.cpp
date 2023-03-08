@@ -5,6 +5,7 @@ struct Node
 int data;
 struct Node *next;
 }*first=NULL;
+
 struct Node* reverse (struct Node* head)
     {
         if (!head || !head->next)
