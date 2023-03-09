@@ -1,32 +1,53 @@
 #include<bits/stdc++.h>
 using namespace std;
-class Solution {
-public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int left = 1;
-        int right = *max_element(piles.begin(), piles.end());
-        
-        while (left < right) {
-            int mid = (left + right) / 2;
-            if (canEatAll(piles, mid, h)) {
-                right = mid;
-            } else {
-                left = mid + 1;
+    vector <int> calculateSpan(int price[], int n)
+    {
+       stack<pair<int,int>>s;
+
+       vector<int> v;
+
+       for(int i=0;i<n;i++){
+
+           if(s.empty()) v.push_back(-1);
+
+           
+
+           else if(!s.empty() && s.top().first > price[i]) 
+
+            v.push_back(s.top().second);
+
+            
+
+            else if(!s.empty() && s.top().first <= price[i]){
+
+                while(!s.empty() && s.top().first <= price[i]){
+
+                    s.pop();
+
+                }
+
+                  if(s.empty()) v.push_back(-1);
+
+                  
+
+                  else{
+
+                      v.push_back(s.top().second);
+
+                  }
+
             }
-        }
-        
-        return left;
+
+            s.push({price[i],i});
+
+       }
+
+       
+
+       for(int i=0;i<v.size();i++){
+
+           v[i] = i - v[i]; 
+       }
+
+       return v;
     }
-    
-private:
-    bool canEatAll(vector<int>& piles, int speed, int h) {
-        int time = 0;
-        for (int pile : piles) {
-            time += (pile - 1) / speed + 1;
-            if (time > h) {
-                return false;
-            }
-        }
-        return true;
-    }
-};
