@@ -16,18 +16,18 @@ vector<long long int> productExceptSelf(vector<long long int> &nums, int n)
 int main()
 {
     int t;
-    cout<<"enter the test case value"<<endl;
-    cin>>t;
-    vector<long long int>nums;
-    while(t--)
+    cout << "enter the test case value" << endl;
+    cin >> t;
+    vector<long long int> nums;
+    while (t--)
     {
         long long int n;
-        cin>>n;
+        cin >> n;
         long long int a[n];
-        for(int i=0;i<n;i++)
+        for (int i = 0; i < n; i++)
         {
             nums.push_back(a[i]);
         }
-        productExceptSelf(nums,n);
+        productExceptSelf(nums, n);
     }
 }
